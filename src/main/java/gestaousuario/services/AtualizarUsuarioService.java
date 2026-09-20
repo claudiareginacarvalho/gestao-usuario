@@ -19,9 +19,6 @@ public class AtualizarUsuarioService {
     }
 
     public void atualizarUsuario (Long id, AtualizarUsuarioDTO atualizarUsuarioDTO){
-
-
-
         Optional<Usuario> usuarioOptonal = repository.findById(id);
         if (usuarioOptonal.isEmpty()){
             throw new NaoEncontrado("Usuário não encontrado");

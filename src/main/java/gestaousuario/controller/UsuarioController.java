@@ -5,6 +5,7 @@ import gestaousuario.dto.UsuarioDTO;
 import gestaousuario.exceptions.EmailJaCadastrado;
 import gestaousuario.exceptions.NaoEncontrado;
 import gestaousuario.services.*;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<?>  cadastrar (@RequestBody CadastrarUsuarioDTO cadastrarUsuarioDTO){
+    public ResponseEntity<?>  cadastrar (@RequestBody @Valid CadastrarUsuarioDTO cadastrarUsuarioDTO){
         try {
             cadastrarUsuarioService.cadastrar(cadastrarUsuarioDTO);
             return ResponseEntity.status(201).build();
@@ -77,7 +78,7 @@ public class UsuarioController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> atualizarUsuario (@PathVariable("id") Long id, @RequestBody AtualizarUsuarioDTO atualizarUsuarioDTO){
+    public ResponseEntity<?> atualizarUsuario (@PathVariable("id") Long id, @Valid @RequestBody AtualizarUsuarioDTO atualizarUsuarioDTO){
         try {
             atualizarUsuarioService.atualizarUsuario(id, atualizarUsuarioDTO);
             return ResponseEntity.status(200).build();

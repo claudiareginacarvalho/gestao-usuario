@@ -1,12 +1,17 @@
 package gestaousuario.dto;
 
 import gestaousuario.entity.Perfil;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class CadastrarUsuarioDTO {
-
+    @NotBlank
     private String nome;
+    @NotBlank
     private String email;
+    @NotBlank
     private String senha;
+    @NotNull
     private Perfil perfil;
 
     //construtor vazio
