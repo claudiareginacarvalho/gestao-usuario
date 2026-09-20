@@ -13,16 +13,19 @@ public class UsuarioController {
     private ConsultarUsuarioService consultarUsuarioService;
     private ListarUsuarioService listarUsuarioService;
     private DeletarUsuarioService deletarUsuarioService;
+    private AtualizarUsuarioService atualizarUsuarioService;
 
     //construtor
     public UsuarioController(CadastrarUsuarioService cadastrarUsuarioService,
                              ConsultarUsuarioService consultarUsuarioService,
                              ListarUsuarioService listarUsuarioService,
-                             DeletarUsuarioService deletarUsuarioService) {
+                             DeletarUsuarioService deletarUsuarioService,
+                             AtualizarUsuarioService atualizarUsuarioService) {
         this.cadastrarUsuarioService = cadastrarUsuarioService;
         this.consultarUsuarioService = consultarUsuarioService;
         this.listarUsuarioService = listarUsuarioService;
         this.deletarUsuarioService = deletarUsuarioService;
+        this.atualizarUsuarioService = atualizarUsuarioService;
     }
 
     @PostMapping
@@ -57,6 +60,17 @@ public class UsuarioController {
             return ResponseEntity.status(204).build();
 
         } catch (NaoEncontrado e){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarUsuario (@PathVariable("id") Long id, @RequestBody AtualizarUsuarioDTO atualizarUsuarioDTO){
+        try {
+            atualizarUsuarioService.atualizarUsuario(id, atualizarUsuarioDTO);
+            return ResponseEntity.status(200).build();
+        }catch (NaoEncontrado e){
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());
