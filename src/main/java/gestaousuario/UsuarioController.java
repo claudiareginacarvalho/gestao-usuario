@@ -12,12 +12,17 @@ public class UsuarioController {
     private CadastrarUsuarioService cadastrarUsuarioService;
     private ConsultarUsuarioService consultarUsuarioService;
     private ListarUsuarioService listarUsuarioService;
+    private DeletarUsuarioService deletarUsuarioService;
 
     //construtor
-    public UsuarioController(CadastrarUsuarioService cadastrarUsuarioService, ConsultarUsuarioService consultarUsuarioService, ListarUsuarioService listarUsuarioService) {
+    public UsuarioController(CadastrarUsuarioService cadastrarUsuarioService,
+                             ConsultarUsuarioService consultarUsuarioService,
+                             ListarUsuarioService listarUsuarioService,
+                             DeletarUsuarioService deletarUsuarioService) {
         this.cadastrarUsuarioService = cadastrarUsuarioService;
         this.consultarUsuarioService = consultarUsuarioService;
         this.listarUsuarioService = listarUsuarioService;
+        this.deletarUsuarioService = deletarUsuarioService;
     }
 
     @PostMapping
@@ -43,5 +48,18 @@ public class UsuarioController {
     @GetMapping()
     public List <UsuarioDTO> listarUsuario (){
         return listarUsuarioService.listarTodos();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarUsuario(@PathVariable("id") Long id){
+        try {
+            deletarUsuarioService.deletar(id);
+            return ResponseEntity.status(204).build();
+
+        } catch (NaoEncontrado e){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
     }
 }
