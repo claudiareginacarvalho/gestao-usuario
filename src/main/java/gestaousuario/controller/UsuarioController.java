@@ -1,4 +1,9 @@
-package gestaousuario;
+package gestaousuario.controller;
+import gestaousuario.dto.AtualizarUsuarioDTO;
+import gestaousuario.dto.CadastrarUsuarioDTO;
+import gestaousuario.dto.UsuarioDTO;
+import gestaousuario.exceptions.NaoEncontrado;
+import gestaousuario.services.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

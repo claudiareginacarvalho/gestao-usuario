@@ -1,4 +1,4 @@
-package gestaousuario;
+package gestaousuario.dto;
 
 public class UsuarioDTO {
     //Aqui não utilizamos a senha para não mostrarmos no listar.

@@ -1,5 +1,9 @@
-package gestaousuario;
+package gestaousuario.services;
 
+import gestaousuario.dto.AtualizarUsuarioDTO;
+import gestaousuario.exceptions.NaoEncontrado;
+import gestaousuario.entity.Usuario;
+import gestaousuario.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

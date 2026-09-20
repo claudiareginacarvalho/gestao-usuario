@@ -1,5 +1,7 @@
 package gestaousuario;
 
+import gestaousuario.entity.Perfil;
+import gestaousuario.entity.Usuario;
 import org.junit.jupiter.api.Test;
 
 public class UsuarioTest {

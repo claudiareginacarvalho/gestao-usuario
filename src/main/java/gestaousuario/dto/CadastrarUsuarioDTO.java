@@ -1,32 +1,39 @@
-package gestaousuario;
+package gestaousuario.dto;
 
-public class AtualizarUsuarioDTO {
+import gestaousuario.entity.Perfil;
+
+public class CadastrarUsuarioDTO {
+
     private String nome;
     private String email;
     private String senha;
     private Perfil perfil;
+
+    //construtor vazio
+    public CadastrarUsuarioDTO() {
+    }
     //construtor
-    public AtualizarUsuarioDTO(String nome, String email, Perfil perfil, String senha) {
+    public CadastrarUsuarioDTO(String nome, String email, String senha, Perfil perfil) {
         this.nome = nome;
         this.email = email;
-        this.perfil = perfil;
         this.senha = senha;
+        this.perfil = perfil;
     }
     //get
-    public String getEmail() {
-        return email;
+    public String getNome() {
+        return nome;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getEmail() {
+        return email;
     }
 
     public Perfil getPerfil() {
         return perfil;
     }
 
-    public String getNome() {
-        return nome;
+    public String getSenha() {
+        return senha;
     }
     //set
     public void setNome(String nome) {
@@ -45,4 +52,3 @@ public class AtualizarUsuarioDTO {
         this.perfil = perfil;
     }
 }
-

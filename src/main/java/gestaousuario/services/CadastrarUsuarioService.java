@@ -1,4 +1,7 @@
-package gestaousuario;
+package gestaousuario.services;
+import gestaousuario.dto.CadastrarUsuarioDTO;
+import gestaousuario.entity.Usuario;
+import gestaousuario.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,7 +13,7 @@ public class CadastrarUsuarioService {
         this.repository = repository;
     }
 
-    void cadastrar (CadastrarUsuarioDTO cadastrarUsuarioDTO){
+    public void cadastrar (CadastrarUsuarioDTO cadastrarUsuarioDTO){
 
         Usuario u = new Usuario(
                 null,

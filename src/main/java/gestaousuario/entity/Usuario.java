@@ -1,4 +1,4 @@
-package gestaousuario;
+package gestaousuario.entity;
 
 import jakarta.persistence.*;
 
