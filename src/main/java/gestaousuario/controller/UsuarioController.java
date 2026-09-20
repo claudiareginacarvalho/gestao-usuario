@@ -2,6 +2,7 @@ package gestaousuario.controller;
 import gestaousuario.dto.AtualizarUsuarioDTO;
 import gestaousuario.dto.CadastrarUsuarioDTO;
 import gestaousuario.dto.UsuarioDTO;
+import gestaousuario.exceptions.EmailJaCadastrado;
 import gestaousuario.exceptions.NaoEncontrado;
 import gestaousuario.services.*;
 import org.springframework.http.HttpStatus;
@@ -35,8 +36,13 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<?>  cadastrar (@RequestBody CadastrarUsuarioDTO cadastrarUsuarioDTO){
-        cadastrarUsuarioService.cadastrar(cadastrarUsuarioDTO);
-        return ResponseEntity.status(201).build();
+        try {
+            cadastrarUsuarioService.cadastrar(cadastrarUsuarioDTO);
+            return ResponseEntity.status(201).build();
+        }
+        catch (EmailJaCadastrado e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")
@@ -79,6 +85,8 @@ public class UsuarioController {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());
+        } catch (EmailJaCadastrado e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
 }

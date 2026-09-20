@@ -1,6 +1,7 @@
 package gestaousuario.services;
 import gestaousuario.dto.CadastrarUsuarioDTO;
 import gestaousuario.entity.Usuario;
+import gestaousuario.exceptions.EmailJaCadastrado;
 import gestaousuario.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,12 @@ public class CadastrarUsuarioService {
     }
 
     public void cadastrar (CadastrarUsuarioDTO cadastrarUsuarioDTO){
+
+        boolean verificador = repository.existsByEmail(cadastrarUsuarioDTO.getEmail());
+
+        if (verificador == true){
+            throw new EmailJaCadastrado("Já existe um usuario com o email cadastrado.");
+        }
 
         Usuario u = new Usuario(
                 null,
