@@ -21,8 +21,9 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public void cadastrar (@RequestBody CadastrarUsuarioDTO cadastrarUsuarioDTO){
+    public ResponseEntity<?>  cadastrar (@RequestBody CadastrarUsuarioDTO cadastrarUsuarioDTO){
         cadastrarUsuarioService.cadastrar(cadastrarUsuarioDTO);
+        return ResponseEntity.status(201).build();
     }
 
     @GetMapping("/{id}")
