@@ -5,17 +5,21 @@ import gestaousuario.exceptions.EmailJaCadastrado;
 import gestaousuario.exceptions.NaoEncontrado;
 import gestaousuario.entity.Usuario;
 import gestaousuario.repository.UsuarioRepository;
+import gestaousuario.utils.HashUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class AtualizarUsuarioService {
+
     public UsuarioRepository repository;
+    public HashUtil hashUtil;
 
     //construtor
-    public AtualizarUsuarioService(UsuarioRepository repository) {
+    public AtualizarUsuarioService(UsuarioRepository repository, HashUtil hashUtil) {
         this.repository = repository;
+        this.hashUtil = hashUtil;
     }
 
     public void atualizarUsuario (Long id, AtualizarUsuarioDTO atualizarUsuarioDTO){
@@ -32,8 +36,10 @@ public class AtualizarUsuarioService {
             throw new EmailJaCadastrado("Já existe um usuario com o email cadastrado.");
         }
 
+        String hashDaSenha = hashUtil.gerarHash(atualizarUsuarioDTO.getSenha());
+
         usuario.setNome(atualizarUsuarioDTO.getNome());
-        usuario.setSenha(atualizarUsuarioDTO.getSenha());
+        usuario.setSenha(hashDaSenha);
         usuario.setEmail(atualizarUsuarioDTO.getEmail());
         usuario.setPerfil(atualizarUsuarioDTO.getPerfil());;
         repository.save(usuario);

@@ -5,6 +5,7 @@ import gestaousuario.dto.TokenDTO;
 import gestaousuario.entity.Usuario;
 import gestaousuario.exceptions.FalhaLogin;
 import gestaousuario.repository.UsuarioRepository;
+import gestaousuario.utils.HashUtil;
 import gestaousuario.utils.JwtUtil;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,14 @@ public class LoginService {
     //atributo jwtutil
     public JwtUtil jwtUtil;
 
+    //atributo hashutil
+    public HashUtil hashUtil;
+
     //construtor
-    public LoginService(UsuarioRepository usuarioRepository, JwtUtil jwtUtil) {
+    public LoginService(UsuarioRepository usuarioRepository, JwtUtil jwtUtil, HashUtil hashUtil) {
         this.usuarioRepository = usuarioRepository;
         this.jwtUtil = jwtUtil;
+        this.hashUtil = hashUtil;
     }
 
     public TokenDTO login ( CredenciaisDTO credenciaisDTO){
@@ -35,7 +40,7 @@ public class LoginService {
 
         Usuario usuario = usuarioOptional.get();
 
-        if (!credenciaisDTO.getSenha().equals(usuario.getSenha())) {
+        if (hashUtil.senhaValida(credenciaisDTO.getSenha(), usuario.getSenha()) == false) {
             throw new FalhaLogin("Email ou senha inválido");
         }
 
