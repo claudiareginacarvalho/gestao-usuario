@@ -1,0 +1,31 @@
+body {
+    width: 900px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+input, select {
+    width: 250px;
+}
+
+button {
+    margin-right: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+#mensagem {
+    color: #990000;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+th {
+    background: #eeeeee;
+}

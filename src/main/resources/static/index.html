@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de usuários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Gestão de usuários</h1>
+
+        <section id="login">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <p>
+                    <label for="loginEmail">E-mail:</label><br>
+                    <input id="loginEmail" type="email" required>
+                </p>
+                <p>
+                    <label for="loginSenha">Senha:</label><br>
+                    <input id="loginSenha" type="password" required>
+                </p>
+                <button type="submit">Entrar</button>
+            </form>
+        </section>
+
+        <section id="sistema" class="hidden">
+            <p>
+                <button id="sair" type="button">Sair</button>
+            </p>
+
+            <h2>Usuário logado</h2>
+            <p>ID: <span id="usuarioIdLogado"></span></p>
+            <p>E-mail: <span id="usuarioEmailLogado"></span></p>
+            <p>Perfil: <span id="usuarioPerfilLogado"></span></p>
+
+            <h2>Usuários</h2>
+            <button id="atualizarLista" type="button">Atualizar lista</button>
+            <p id="mensagem"></p>
+
+            <table border="1" cellpadding="5">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Perfil</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="listaUsuarios"></tbody>
+            </table>
+
+            <h2 id="tituloFormulario">Cadastrar usuário</h2>
+            <form id="usuarioForm">
+                <input id="usuarioId" type="hidden">
+                <p>
+                    <label for="nome">Nome:</label><br>
+                    <input id="nome" type="text" required>
+                </p>
+                <p>
+                    <label for="email">E-mail:</label><br>
+                    <input id="email" type="email" required>
+                </p>
+                <p>
+                    <label for="senha">Senha:</label><br>
+                    <input id="senha" type="password" required>
+                </p>
+                <p>
+                    <label for="perfil">Perfil:</label><br>
+                    <select id="perfil" required>
+                        <option value="ADMINISTRADOR">Administrador</option>
+                        <option value="OPERADOR">Operador</option>
+                        <option value="CLIENTE">Cliente</option>
+                    </select>
+                </p>
+                <button type="submit">Salvar</button>
+                <button id="cancelarEdicao" type="button">Cancelar edição</button>
+            </form>
+
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

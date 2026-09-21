@@ -44,7 +44,7 @@ public class LoginService {
             throw new FalhaLogin("Email ou senha inválido");
         }
 
-        String token = jwtUtil.gerarToken(usuario.getEmail());
+        String token = jwtUtil.gerarToken(usuario.getId(), usuario.getEmail(), usuario.getPerfil());
         return new TokenDTO(token);
     }
 
